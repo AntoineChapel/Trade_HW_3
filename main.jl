@@ -28,6 +28,15 @@ df_agg = combine(
 #SI03: number of jobs in All Other Services
 
 
-println(first(df_agg, 15))
+println(first(df_agg, 1500))
 println(describe(df_agg[:, Not([:w_geocode_11, :h_geocode_11])]))
 println("Number of rows: ", size(df_agg, 1))
+
+
+# Central county in Albany OMB defined MSA: Albany County, Rensselaer County, Saratoga County, Schenectady County
+# Tracts in Albany County, Rensselaer County, Saratoga County, Schenectady County:
+## Albany county: 36001
+## Rensselaer county: 36083
+## Saratoga county: 36091
+## Schenectady county: 36093
+# Central county in Syracuse OMB defined MSA: Onondaga County 36067
