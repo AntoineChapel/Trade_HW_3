@@ -28,7 +28,6 @@ df_agg = combine(
 #SI03: number of jobs in All Other Services
 
 
-println(first(df_agg, 1500))
 println(describe(df_agg[:, Not([:w_geocode_11, :h_geocode_11])]))
 println("Number of rows: ", size(df_agg, 1))
 
@@ -40,3 +39,11 @@ println("Number of rows: ", size(df_agg, 1))
 ## Saratoga county: 36091
 ## Schenectady county: 36093
 # Central county in Syracuse OMB defined MSA: Onondaga County 36067
+
+df_agg.w_county = [parse(Int, string(x)[1:5]) for x in df_agg.w_geocode_11]
+df_agg.h_county = [parse(Int, string(x)[1:5]) for x in df_agg.h_geocode_11]
+
+df_agg.albany_core = [x in [36001, 36083, 36091, 36093] ? 1 : 0 for x in df_agg.w_county]
+df_agg.syracuse_core = [x == 36067 ? 1 : 0 for x in df_agg.w_county]
+
+println(first(df_agg, 10))
