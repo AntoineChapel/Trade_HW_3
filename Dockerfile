@@ -10,16 +10,13 @@ RUN apt-get update && apt-get install -y \
     vim \
     zsh \
     curl \
-    fonts-powerline \
-    r-base \
     wget \
-    ca-certificates \
-    apt-transport-https \
-    software-properties-common \
+    fonts-powerline \
     python3 \
     python3-pip \
     build-essential \
-    python3.13-venv \
+    python3-venv \
+    git-lfs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Oh My Zsh for a better terminal experience
@@ -42,13 +39,15 @@ RUN chsh -s $(which zsh) root
 WORKDIR /app
 
 
-RUN python3 -m venv hw3env 
+
+RUN python3 -m venv /app/hw3env
+
 # Install Python packages in the virtual environment
 RUN /app/hw3env/bin/pip install --upgrade pip && \
     /app/hw3env/bin/pip install python-lsp-server
 
 # Clone repository and install requirements
-RUN git clone https://github.com/AntoineChapel/Trade_HW_3.git && \
-    /app/hw3env/bin/pip install -r Trade_HW_3/requirements.txt
+RUN git lfs clone https://github.com/AntoineChapel/Trade_HW_3.git && \
+    /app/hw3env/bin/pip3 install -r Trade_HW_3/requirements.txt
 
 CMD ["zsh"]

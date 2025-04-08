@@ -139,7 +139,7 @@ ax2.title.set_text('Syracuse County-based OMB Core')
 plt.savefig('graph_output/syracuse_county_core.png')
 plt.show()
 
-tracts_ny_path = 'partnership_shapefiles_36/PVS_24_v2_tracts2020_36.shp' 
+tracts_ny_path = 'data/PVS_24_v2_tracts2020_36.shp' 
 tracts_ny_df = gpd.read_file(tracts_ny_path)
 
 tracts_albany_core_gdf = tracts_ny_df.iloc[np.where(np.isin(np.array(tracts_ny_df['TRACTID']).astype(int), core_albany))[0], :]
