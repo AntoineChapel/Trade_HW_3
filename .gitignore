@@ -2,3 +2,6 @@
 /.vscode
 /hw3env
 *.zip
+map.ipynb
+map.py
+/partnership*
